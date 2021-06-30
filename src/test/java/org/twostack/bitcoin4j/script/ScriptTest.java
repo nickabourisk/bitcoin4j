@@ -181,8 +181,8 @@ public class ScriptTest {
         JsonNode json = new ObjectMapper().readTree(new InputStreamReader(getClass().getResourceAsStream(
                 "script_valid.json"), Charsets.UTF_8));
         for (JsonNode test : json) {
-            Script scriptSig = parseScriptString(test.get(0).asText());
-            Script scriptPubKey = parseScriptString(test.get(1).asText());
+            Script scriptSig = Script.fromBitcoindAsmString(test.get(0).asText());
+            Script scriptPubKey = Script.fromBitcoindAsmString(test.get(1).asText());
             Set<VerifyFlag> verifyFlags = parseVerifyFlags(test.get(2).asText());
             try {
 
@@ -203,8 +203,8 @@ public class ScriptTest {
                 "script_invalid.json"), Charsets.UTF_8));
         for (JsonNode test : json) {
             try {
-                Script scriptSig = parseScriptString(test.get(0).asText());
-                Script scriptPubKey = parseScriptString(test.get(1).asText());
+                Script scriptSig = Script.fromBitcoindAsmString(test.get(0).asText());
+                Script scriptPubKey = Script.fromBitcoindAsmString(test.get(1).asText());
                 Set<VerifyFlag> verifyFlags = parseVerifyFlags(test.get(2).asText());
 
                 Interpreter interp = new Interpreter();
